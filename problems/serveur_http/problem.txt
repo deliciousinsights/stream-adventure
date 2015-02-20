@@ -1,11 +1,12 @@
-In this challenge, write an http server that uses a through stream to write back
-the request stream as upper-cased response data for POST requests.
+Pour ce défi, écrivez un serveur HTTP qui utilise un flux `through()`
+afin de renvoyer le flux entrant de données converti en majuscules
+pour les requêtes POST.
 
-Streams aren't just for text files and stdin/stdout. Did you know that http
-request and response objects from node core's `http.createServer()` handler are
-also streams?
+Les flux ne sont pas juste des fichiers ou les entrée/sortie standards.
+Saviez-vous que c’est aussi le cas des objets requête et réponse dans les
+gestionnaires passés à l’API noyau `http.createServer()` de Node.js ?
 
-For example, we can stream a file to the response object:
+Par exemple, nous pouvons streamer un fichier vers la réponse HTTP :
 
     var http = require('http');
     var fs = require('fs');
@@ -14,10 +15,11 @@ For example, we can stream a file to the response object:
     });
     server.listen(process.argv[2]);
 
-This is great because our server can response immediately without buffering
-everything in memory first.
+C’est génial, parce que notre serveur peut répondre immédiatement, sans
+avoir à tout stocker en mémoire d’abord.
 
-We can also stream a request to populate a file with data:
+À l’inverse, nous pouvons streamer une requête pour remplir un fichier
+avec ses données :
 
     var http = require('http');
     var fs = require('fs');
@@ -29,28 +31,31 @@ We can also stream a request to populate a file with data:
     });
     server.listen(process.argv[2]);
 
-You can test this post server with curl:
+Vous pouvez tester ce petit programme avec curl :
 
     $ node server.js 8000 &
-    $ echo hack the planet | curl -d@- http://localhost:8000
+    $ echo hack la planète | curl -d@- http://localhost:8000
     beep boop
     $ cat post.txt
-    hack the planet
+    hacke la planète
 
-Your http server should listen on the port given at process.argv[2] and convert
-the POST request written to it to upper-case using the same approach as the
-TRANSFORM example.
+Votre serveur HTTP doit écouter sur un numéro de port fourni par
+`process.argv[2]`, et convertir les contenus de requêtes POST en majuscules,
+en utilisant une approche similaire à celle de l’exercice TRANSFORM.
 
-As a refresher, here's an example with the default through callbacks explicitly
-defined:
+Pour rappel, voici un exemple qui redéfinit explicitement les fonctions de
+rappel par défaut pour `through()` :
 
     var through = require('through')
     process.stdin.pipe(through(write, end)).pipe(process.stdout);
-    
+
     function write (buf) { this.queue(buf) }
     function end () { this.queue(null)
 
-Do that, but send upper-case data in your http server in response to POST data.
+Faites ce genre de choses, mais émettez des contenus en majuscules dans
+votre serveur HTTP, en réponse aux requêtes POST.
 
-Make sure to `npm install through` in the directory where your solution file
-lives.
+Assurez-vous d’avoir installé le module `through` dans le répertoire
+de votre programme, par exemple comme ceci :
+
+    npm install through
