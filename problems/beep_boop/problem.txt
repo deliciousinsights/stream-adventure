@@ -1,2 +1,2 @@
-Just to make sure everything is working, just write a `program.js` that outputs
-the string "beep boop" with a `console.log()`.
+Juste histoire de s’assurer que tout est bien en place, écrivez un programme
+`program.js` qui affiche le texte "beep boop" à l’aide de `console.log()`.
