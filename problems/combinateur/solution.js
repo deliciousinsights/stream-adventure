@@ -6,11 +6,11 @@ var zlib = require('zlib');
 module.exports = function () {
     var grouper = through(write, end);
     var current;
-    
+
     function write (line) {
         if (line.length === 0) return;
         var row = JSON.parse(line);
-        
+
         if (row.type === 'genre') {
             if (current) {
                 this.queue(JSON.stringify(current) + '\n');
@@ -27,6 +27,6 @@ module.exports = function () {
         }
         this.queue(null);
     }
-    
+
     return combine(split(), grouper, zlib.createGzip());
 };
