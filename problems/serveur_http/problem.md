@@ -50,7 +50,7 @@ rappel par défaut pour `through()` :
     process.stdin.pipe(through(write, end)).pipe(process.stdout);
 
     function write (buf) { this.queue(buf) }
-    function end () { this.queue(null)
+    function end () { this.queue(null) }
 
 Faites ce genre de choses, mais émettez des contenus en majuscules dans
 votre serveur HTTP, en réponse aux requêtes POST.

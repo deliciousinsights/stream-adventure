@@ -8,6 +8,11 @@ var dataDir = path.resolve(
     process.env.HOME || process.env.USERPROFILE,
     '.config/stream-adventure'
 );
+var msee = require('msee');
+var mseeOptions = {
+    paragraphStart: '',
+    paragraphEnd: '\n\n'
+};
 
 mkdirp.sync(dataDir);
 
@@ -157,16 +162,19 @@ function printProblem(name) {
     console.log('  ' + Array(70).join('#') + '\n');
 
     var dir = dirFromName(name);
-    var file = path.resolve(dir, 'problem.txt');
+    var file = path.resolve(dir, 'problem.md');
     updateData('current', function (c) { return name });
-    var rs = fs.createReadStream(file);
-    rs.on('close', function () {
-        console.log(
-                '\nPour vérifier votre programme, tapez : '
-                + '`stream-adventure verify program.js`.\n'
-        );
-    });
-    rs.pipe(process.stdout);
+
+    console.log(msee.parseFile(file, mseeOptions));
+
+    // var rs = fs.createReadStream(file);
+    // rs.on('close', function () {
+    console.log(
+            '\nPour vérifier votre programme, tapez : '
+            + '`stream-adventure verify program.js`.\n'
+    );
+    // });
+    // rs.pipe(process.stdout);
 }
 
 function onselect (name) {
