@@ -1,21 +1,22 @@
-Instead of transforming every line as in the previous "INPUT OUTPUT" example,
-for this challenge, convert even-numbered lines to upper-case and odd-numbered
-lines to lower-case. Consider the first line to be odd-numbered. For example
-given this input:
+Au lieu de transformer chaque ligne, comme dans l’exemple précédent,
+"ENTREE SORTIE", pour cet exercice vous allez convertir les lignes paires
+en majuscules, et les impaires en minuscules.  On considère que la première
+ligne est impaire.  Par exemple, sur la base de l’entrée suivante :
 
-    One
-    Two
-    Three
-    Four
+    Un
+    Deux
+    Trois
+    Quatre
 
-Your program should output:
+Votre programme devrait afficher
 
-    one
-    TWO
-    three
-    FOUR
+    un
+    DEUX
+    trois
+    QUATRE
 
-You can use the `split` module to split input by newlines. For example:
+Vous pouvez utiliser le module `split` pour découper l’entrée sur la base
+des sauts de ligne.  Par exemple :
 
     var split = require('split');
     process.stdin
@@ -23,19 +24,21 @@ You can use the `split` module to split input by newlines. For example:
         .pipe(through(function (line) {
             console.dir(line.toString());
         }))
-    ;
 
-Will buffer and split chunks on newlines before you get them. For example, for
-the `split.js` we just wrote we will get separate events for each line even
-though the data probably all arrives on the same chunk:
+Ce code va bufferiser l’entrée et la découper à la volée sur base des retours
+chariots, avant de vous transmettre un bloc par ligne.  Par exemple, pour le
+fichier `split.js` ci-dessus, nous obtiendrons des événements distincts pour
+chaque ligne même si les données arrivent probablement d’un bloc à l’origine :
 
-    $ echo -e 'one\ntwo\nthree' | node split.js
-    'one'
-    'two'
-    'three'
+    $ echo -e 'un\ndeux\ntrois' | node split.js
+    'un'
+    'deux'
+    'trois'
 
-Your own program should use `split` in this way, but you should transform the
-input and pipe the output through to `process.stdout`.
+Votre propre programme devrait utiliser `split` de cette façon, mais il vous
+faudra transformer l’entrée et la connecter à la sortie (`process.stdout`).
 
-Make sure to `npm install split through` in the directory where your solution
-file lives.
+Assurez-vous d’avoir installé les modules `split` et `through` dans le répertoire
+de votre programme, par exemple comme ceci :
+
+    npm install split through
