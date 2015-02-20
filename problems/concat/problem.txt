@@ -1,13 +1,16 @@
-You will be given text on process.stdin. Buffer the text and reverse it using
-the `concat-stream` module before writing it to stdout.
+Vous allez recevoir du texte sur `process.stdin`.  Bufferisez le texte
+et inversez son contenu complet, grâce au module `concat-stream`, avant
+d’envoyer le résultat final sur la sortie standard.
 
-`concat-stream` is a write stream that you can pass a callback to to get the
-complete contents of a stream as a single buffer. Here's an example that uses
-concat to buffer POST content in order to JSON.parse() the submitted data:
+`concat-stream` est un flux en écriture auquel vous passez une fonction de
+rappel qui sera invoquée avec un unique `Buffer` une fois l’intégralité du
+contenu lue.  Voici un exemple qui s’en sert pour bufferiser le contenu POST
+d’une requête HTTP afin de pouvoir faire un `JSON.parse()` sur les données
+transmises :
 
     var concat = require('concat-stream');
     var http = require('http');
-    
+
     var server = http.createServer(function (req, res) {
         if (req.method === 'POST') {
             req.pipe(concat(function (body) {
@@ -19,8 +22,10 @@ concat to buffer POST content in order to JSON.parse() the submitted data:
     });
     server.listen(5000);
 
-In your adventure you'll only need to buffer input with `concat()` from
-process.stdin.
+Pour votre aventure, vous aurez seulement besoin de bufferiser l’entrée
+à l’aide de `concat()` à partir de `process.stdin`.
 
-Make sure to `npm install concat-stream` in the directory where your solution
-file is located.
+Assurez-vous d’avoir installé le module dans le répertoire de votre programme,
+par exemple comme ceci :
+
+    npm install split concat-stream
