@@ -1,8 +1,8 @@
-# stream adventure
+# stream adventure (fr)
+
+**This is a temporary FR fork of `stream-adventure`, until the original one is globalizable (g11n) in-place, at which point the FR L10n will be merged in and this repo removed.**
 
 Go on an educational stream adventure!
-
-[![build status](https://secure.travis-ci.org/substack/stream-adventure.png)](http://travis-ci.org/substack/stream-adventure)
 
 # install
 
@@ -13,7 +13,7 @@ Once you've installed `node`, you will have an `npm` command.
 With [npm](https://npmjs.org) do:
 
 ```
-npm install -g stream-adventure
+npm install -g stream-adventure-fr
 ```
 
 If you want to play offline, make a new directory then do:

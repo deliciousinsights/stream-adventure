@@ -8,22 +8,22 @@ module.exports = function (opts) {
 
     var menu = tmenu({
       width: 65,
-      x: 3, y: 2, 
+      x: 3, y: 2,
       bg: opts.bg || 'blue',
       fg: opts.fg || 'white'
     });
 
     menu.reset();
-    
+
     menu.write('STREAMS ADVENTURE\n');
     menu.write('-----------------\n');
-    
+
     var order = require('../data/order.json');
-    
+
     order.forEach(function (name) {
         var isDone = opts.completed.indexOf(name) >= 0;
         if (isDone) {
-            var m = '[COMPLETED]';
+            var m = '[FAIT]';
             menu.add(
                 name
                 + Array(65 - m.length - name.length + 1).join(' ')
@@ -33,24 +33,24 @@ module.exports = function (opts) {
         else menu.add(name);
     });
     menu.write('-----------------\n');
-    menu.add('HELP');
-    menu.add('EXIT');
-    
+    menu.add('AIDE');
+    menu.add('QUITTER');
+
     menu.on('select', function (label) {
         var name = label.replace(/\s{2}.*/, '');
-        
+
         menu.close();
-        if (name === 'EXIT') return emitter.emit('exit');
-        if (name === 'HELP') {
+        if (name === 'QUITTER') return emitter.emit('exit');
+        if (name === 'AIDE') {
             console.log();
             return fs.createReadStream(__dirname + '/usage.txt')
                 .pipe(process.stdout)
             ;
         }
-        
+
         emitter.emit('select', name);
     });
     menu.createStream().pipe(process.stdout);
-    
+
     return emitter;
 };

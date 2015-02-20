@@ -65,56 +65,55 @@ if (argv._[0] === 'verify' || argv._[0] === 'run') {
         });
         v.on('pass', onpass);
         v.on('fail', onfail);
-        
+
         if (setup.stdin) {
             setup.stdin.pipe(v);
             setup.stdin.resume();
         }
-        
+
         if (setup.a && setup.a.resume) setup.a.resume();
         if (setup.b && setup.b.resume) setup.b.resume();
     }, setup.wait || 1);
-    
+
     function onpass () {
-        console.log('# PASS');
-        console.log('\nYour solution to ' + current + ' passed!');
+        console.log('# RÉUSSI');
+        console.log('\Votre solution pour ' + current + ' fonctionne !');
         console.log(
-            '\nHere\'s what the official solution'
-            + ' is if you want to compare notes:\n'
+            '\nVoici la solution officielle, si vous voulez comparer :\n'
         );
         var src = fs.readFileSync(path.join(dir, 'solution.js'), 'utf8');
         src.split('\n').forEach(function (line) {
             console.log('    ' + line);
         });
-        
+
         updateData('completed', function (xs) {
             if (!xs) xs = [];
             var ix = xs.indexOf(current);
             return ix >= 0 ? xs : xs.concat(current);
         });
-        
+
         var completed = getData('completed') || [];
-        
+
         var remaining = order.length - completed.length;
         if (remaining === 0) {
-            console.log("You've finished all the challenges! Hooray!\n");
+            console.log("Vous avez terminé tous les défis ! Bravo !\n");
         }
         else {
-            console.log('You have ' + remaining + ' challenges left.');
-            console.log('Type `stream-adventure` to show the menu.\n');
+            console.log('Il vous reste ' + remaining + ' défi(s).');
+            console.log('Tapez `stream-adventure` pour afficher le menu.\n');
         }
-        
+
         if (setup.close) setup.close();
     }
-    
+
     function onfail () {
         if (setup.close) setup.close();
-        
-        console.log('# FAIL');
+
+        console.log('# RATÉ');
         console.log(
-            "\nYour solution didn't match the expected output."
-            + '\nTry again, or run `stream-adventure run program.js`'
-            + ' to see your solution\'s output.'
+            "\nVotre solution ne fonctionne pas."
+            + '\nRéessayez, our exécutez `stream-adventure run program.js`'
+            + ' pour voir ce qu’affiche votre solution.'
         );
         exitCode = 1;
     }
@@ -145,8 +144,7 @@ else {
 function getCurrentProblem() {
     var current = getData('current');
     if (!current) {
-        console.error('ERROR: No active problem. '
-                + 'Select a challenge from the menu.'
+        console.error('ERREUR : Aucun exercice en cours.  Choisissez-en un dans le menu.'
         );
         return process.exit(1);
     }
@@ -164,7 +162,7 @@ function printProblem(name) {
     var rs = fs.createReadStream(file);
     rs.on('close', function () {
         console.log(
-                '\nTo verify your program, run: '
+                '\nPour vérifier votre programme, tapez : '
                 + '`stream-adventure verify program.js`.\n'
         );
     });
