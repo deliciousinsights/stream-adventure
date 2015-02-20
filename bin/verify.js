@@ -100,7 +100,7 @@ function compare (actual, expected, opts) {
         equal = equal && eq;
 
         if (opts.long) {
-            this.queue('RÉEL :   '
+            this.queue('RÉEL :    '
                 + COLORS[eq ? 'PASS' : 'FAIL']
                 + JSON.stringify(pair[0])
                 + COLORS.RESET + '\n'
