@@ -1,18 +1,25 @@
-In this adventure, write some browser code that uses the websocket-stream module
-to print the string "hello\n".
+Pour cette nouvelle aventure, écrivez du code conçu pour le navigateur, qui
+utilisera le module `websocket-stream` pour afficher le texte `"hello\n"`.
 
-Your solution file will be compiled with browserify and the verify script will
-prompt you to open `http://localhost:8000` in a browser to verify your solution.
+Votre fichier de solution sera compilé avec **browserify**, et le script de
+vérification vous demandera d’ouvrir `http://localhost:8000` dans votre
+navigateur pour valider votre solution.
 
-To open a stream with websocket-stream on localhost:8000, just write:
+Pour ouvrir un flux `websocket-stream` sur `localhost:8000`, vous aurez
+juste besoin d’écrire :
 
     var ws = require('websocket-stream');
     var stream = ws('ws://localhost:8000');
-   
-Then write the string "hello\n" to the stream and end the stream.
 
-The readme for websocket-stream has more info if you're curious about how to
-write the server side code: https://github.com/maxogden/websocket-stream
+Ensuite, écrivez la chaîne `"hello\n"` dans le flux, et fermez-le.
 
-Make sure to `npm install websocket-stream` in the directory where your solution
-file lives.
+La documentation du module `websocket-stream` vous donne davantage
+d’information si vous souhaitez savoir, par exemple, comment on écrirait
+la partie serveur :
+
+  https://github.com/maxogden/websocket-stream
+
+Assurez-vous d’avoir installé le module `websocket-stream` dans le répertoire
+de votre programme, par exemple comme ceci :
+
+    npm install websocket-stream
