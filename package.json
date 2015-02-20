@@ -1,7 +1,7 @@
 {
-  "name": "stream-adventure",
+  "name": "stream-adventure-fr",
   "version": "2.5.1",
-  "description": "an educational stream adventure",
+  "description": "an educational stream adventure (temporary FR fork until upstream has g11n support)",
   "bin": {
     "stream-adventure": "bin/cmd.js"
   },
@@ -44,12 +44,19 @@
     "educational",
     "guide",
     "tutorial",
-    "learn"
+    "learn",
+    "nodeschool",
+    "workshop"
   ],
   "author": {
     "name": "James Halliday",
     "email": "mail@substack.net",
     "url": "http://substack.net"
+  },
+  "contributor": {
+    "name": "Christophe Porteneuve",
+    "email": "tdd@tddsworld.com",
+    "url": "http://tddsworld.com"
   },
   "license": "MIT"
 }
