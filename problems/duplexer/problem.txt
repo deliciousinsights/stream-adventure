@@ -1,18 +1,26 @@
-Write a program that exports a function that spawns a process from a `cmd`
-string and an `args` array and returns a single duplex stream joining together
-the stdin and stdout of the spawned process:
+Écrivez un module qui exporte une fonction, laquelle invoque un processus
+décrit par un premier argument `cmd` (texte) et un deuxième argument `args`
+(tableau), et renvoie un flux duplex qui connecte à l’entrée standard
+et à la sortie standard du processus ainsi invoqué :
 
     var spawn = require('child_process').spawn;
-    
-    module.exports = function (cmd, args) {
-        // spawn the process and return a single stream
-        // joining together the stdin and stdout here
+
+    module.exports = function spawnAndStream(cmd, args) {
+        // invoquez le processus et renvoyez un flux unique
+        // qui vous fournisse l’accès à l’entrée et la sortie standard
+        // du processus
     };
 
-There is a very handy module you can use here: duplexer. The duplexer module
-exports a single function `duplexer(writable, readable)` that joins together a
-writable stream and readable stream into a single, readable/writable duplex
-stream.
+Il existe un module très pratique pour faire ça : `duplexer`.  Ce module
+exporte une unique fonction, `duplexer(writable, readable)`, qui combine
+les deux flux qu’on lui passe en un seul flux duplex (c’est-à-dire en
+lecture et en écriture).
 
-If you use duplexer, make sure to `npm install duplexer` in the directory where
-your solution file is located.
+Si vous utilisez `duplexer`, assurez-vous de l’installer dans le répertoire
+de votre solution, par exemple comme ceci :
+
+    npm install duplexer
+
+Vous trouverez la documentation de `spawn()` ici :
+
+    http://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options
