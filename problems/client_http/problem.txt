@@ -1,24 +1,29 @@
-Send an HTTP POST request to http://localhost:8000 and pipe process.stdin into
-it. Pipe the response stream to process.stdout.
+Envoyez une requête HTTP POST sur `http://localhost:8000`, et connectez-y
+`process.stdin` en entrée, et `process.stdout` en sortie.
 
-Here's an example of how to use the `request` module to send a GET request,
-piping the result to stdout:
+Voici un exemple qui utilise le module `request` pour créer une requête GET
+et connecter sa réponse vers la sortie standard :
 
     var request = require('request');
     request('http://beep.boop:80/').pipe(process.stdout);
 
-To make a POST request, just call `request.post()` instead of `request()`:
+Pour faire une requête POST, appelez simplement `request.post()` au lieu
+de `request()` tout court :
 
     var request = require('request');
     var r = request.post('http://beep.boop:80/');
-    
-The `r` object that you get back from `request.post()` is a readable+writable
-stream so you can pipe a readable stream into it (`src.pipe(r)`) and you can
-pipe it to a writable stream (`r.pipe(dst)`).
 
-You can even chain both steps together: src.pipe(r).pipe(dst);
+L’objet `r` que vous obtenez en réponse à `request.post()` est un flux en
+lecture/écriture, vous pouvez donc connecter un flux en lecture vers lui
+(`src.pipe(r)`) tout comme un flux en écriture depuis lui (`r.pipe(dst)`).
 
-Hint: for your code, src will be process.stdin and dst will be process.stdout.
+Vous pouvez même faire les deux d’un coup : `src.pipe(r).pipe(dst)`.
 
-Make sure to `npm install request` in the directory where your solution file
-lives.
+## Conseil
+
+Pour votre code, `src` sera `process.stdin` et `dst` sera `process.stdout`.
+
+Assurez-vous d’avoir installé le module `request` dans le répertoire de
+votre programme, par exemple comme ceci :
+
+    npm install request
