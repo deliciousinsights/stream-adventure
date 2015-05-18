@@ -1,6 +1,6 @@
 {
   "name": "stream-adventure-fr",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "description": "an educational stream adventure (temporary FR fork until upstream has g11n support)",
   "bin": {
     "stream-adventure": "bin/cmd.js"
