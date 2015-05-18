@@ -35,11 +35,11 @@ Pour finir, utilisez l’API noyau `crypto.createHash('md5', { encoding: 'hex' }
 pour obtenir un flux qui produit le hash MD5 hexadécimal du contenu qu’on lui
 écrit.
 
-Le module `through` vous sera également utile si vous voulez une solution
+Le module `through2` vous sera également utile si vous voulez une solution
 bien orientée *pipeline* (qui `.pipe()` dans `process.stdout`) plutôt qu’avec
 des `console.log()`.
 
-Assurez-vous d’avoir installé les modules `tar` et `through` dans le répertoire
+Assurez-vous d’avoir installé les modules `tar` et `through2` dans le répertoire
 de votre programme, par exemple comme ceci :
 
-    npm install tar through
+    npm install tar through2

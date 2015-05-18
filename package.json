@@ -22,6 +22,7 @@
     "tar": "~0.1.17",
     "terminal-menu": "~0.0.0",
     "through": "~2.3.4",
+    "through2": "^0.6.5",
     "trumpet": "~1.6.2",
     "tuple-stream": "~0.0.2",
     "websocket-stream": "~0.2.0",
